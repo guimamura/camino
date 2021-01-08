@@ -42,6 +42,10 @@ const DeviceList = (props) => {
         )
     }
 
+    const countStatusActive = () => filteredDevices.filter(device => device.active === true).length
+
+    const countStatusInactive = () => filteredDevices.filter(device => device.active === false).length
+
     const filteredDevices = deviceList
         .filter(device => {
             switch (statusFilter) {
@@ -77,7 +81,7 @@ const DeviceList = (props) => {
         <Grid container spacing={2}>
             <Grid item xs={2}>
                 <TextField 
-                    id="standard-basic" 
+                    id="searchInput" 
                     label="Search" 
                     onChange={(e) => handleSearchDevice(e.target.value)}    
                 />
@@ -107,6 +111,13 @@ const DeviceList = (props) => {
                     <MenuItem value={'descValue'}>maior valor</MenuItem>
                 </Select>
             </Grid>
+            <Grid item xs={2}>
+                Actives: {countStatusActive()}
+            </Grid>
+            <Grid item xs={10}>
+                Inactives: {countStatusInactive()}
+            </Grid>
+
             {filteredDevices.length ?
                 filteredDevices
                     .map(device => (
