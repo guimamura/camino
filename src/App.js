@@ -1,12 +1,14 @@
 import React from 'react'
+import styled from 'styled-components'
+import Main from './components/Main/Main'
+
+const AppContainer = styled.main``
 
 const App = () => {
-
     return (
-        <div className='instructions'>
-            <h1>Desafio Frontend Camino</h1>
-            <span>Sinta-se à vontade para implementar a UI da maneira que desejar.</span>
-        </div>
+        <AppContainer>
+            <Main />
+        </AppContainer>
     )
 }
 

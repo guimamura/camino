@@ -1,24 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import reducer from './reducers/index'
+import { HashRouter } from 'react-router-dom'
 
-import App from './App';
-import './styles.css';
+const store = createStore(reducer, applyMiddleware(thunk))
 
-function render(Component) {
-    ReactDOM.render(
-        <AppContainer>
-            <Component />
-        </AppContainer>,
-        document.getElementById('root')
-    );
-}
-
-render(App);
-
-if (module.hot) {
-    module.hot.accept('./App', () => {
-        const NextApp = require('./App').default;
-        render(NextApp);
-    });
-}
+ReactDOM.render(
+  <HashRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </HashRouter>,
+  document.getElementById('root')
+);
